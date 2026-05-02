@@ -107,6 +107,41 @@
   .note{font-size:13px;color:var(--muted)}
   .note a{color:var(--accent);text-decoration:none}
   .note a:hover{text-decoration:underline}
+  .card.table-view{
+    max-width:840px;
+    text-align:left;
+  }
+  .card.table-view h1,
+  .card.table-view .section-name{
+    text-align:center;
+  }
+  .table-wrap{
+    overflow-x:auto;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    color:var(--ink);
+  }
+  th,td{
+    border-bottom:1px solid var(--line);
+    padding:12px 14px;
+    text-align:left;
+    vertical-align:top;
+  }
+  th{
+    color:var(--muted);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  td a{
+    color:var(--accent);
+    text-decoration:none;
+  }
+  td a:hover{text-decoration:underline}
 
   /* FOOTER */
   footer{
@@ -149,7 +184,7 @@
   </nav>
 
   <main>
-    <div class="card">
+    <div class="card" id="page-card">
       <h1 id="page-title">Coming soon</h1>
       <p class="section-name" id="section-name"></p>
       <div class="divider"></div>
@@ -164,17 +199,27 @@
 
   <script>
     var buttons = document.querySelectorAll('#nav button');
+    var card = document.getElementById('page-card');
     var title = document.getElementById('page-title');
     var label = document.getElementById('section-name');
     var note = document.getElementById('page-note');
     var defaultTitle = title.textContent;
     var defaultNote = note.innerHTML;
+    var cveRows = '';
+    for (var row = 0; row < 11; row++) {
+      cveRows += '<tr><td>CVE-????</td><td>Under Embargo</td><td><a href="#">N/A</a></td></tr>';
+    }
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener('click', function(){
         for (var j = 0; j < buttons.length; j++) buttons[j].classList.remove('active');
         this.classList.add('active');
         label.textContent = this.textContent;
-        if (this.textContent === 'Pytheas AI') {
+        card.classList.remove('table-view');
+        if (this.textContent === 'CVEs') {
+          card.classList.add('table-view');
+          title.textContent = 'CVEs';
+          note.innerHTML = '<div class="table-wrap"><table><thead><tr><th>CVE</th><th>Description</th><th>POC</th></tr></thead><tbody>' + cveRows + '</tbody></table></div>';
+        } else if (this.textContent === 'Pytheas AI') {
           title.textContent = 'Schedule a 30 minute demo';
           note.innerHTML = 'To arrange a demo, email us at <a href="mailto:contact@inversuslabs.com">contact@inversuslabs.com</a>';
         } else {
