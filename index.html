@@ -107,6 +107,13 @@
   .note{font-size:13px;color:var(--muted)}
   .note a{color:var(--accent);text-decoration:none}
   .note a:hover{text-decoration:underline}
+  .disclaimer{
+    display:block;
+    margin-top:18px;
+    font-size:11px;
+    line-height:1.5;
+    color:var(--muted);
+  }
   .card.table-view{
     max-width:840px;
     text-align:left;
@@ -221,7 +228,7 @@
           note.innerHTML = '<div class="table-wrap"><table><thead><tr><th>CVE</th><th>Description</th><th>POC</th></tr></thead><tbody>' + cveRows + '</tbody></table></div>';
         } else if (this.textContent === 'Pytheas AI') {
           title.textContent = 'Schedule a 30 minute demo';
-          note.innerHTML = 'To arrange a demo, email us at <a href="mailto:contact@inversuslabs.com">contact@inversuslabs.com</a>';
+          note.innerHTML = 'To arrange a demo, email us at <a href="mailto:contact@inversuslabs.com">contact@inversuslabs.com</a><span class="disclaimer">Demos are available only to organizations and individuals in jurisdictions where Inversus Labs is permitted to provide services. Requests may be declined where access would be prohibited or restricted by applicable sanctions, export controls, or other legal requirements.</span>';
         } else {
           title.textContent = defaultTitle;
           note.innerHTML = defaultNote;
