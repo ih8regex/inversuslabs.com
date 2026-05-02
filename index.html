@@ -144,16 +144,16 @@
     <button class="active">Home</button>
     <button>N-Day Feed</button>
     <button>CVEs</button>
-    <button>Demo</button>
+    <button>Pytheas AI</button>
     <button>Contact Us</button>
   </nav>
 
   <main>
     <div class="card">
-      <h1>Coming soon</h1>
+      <h1 id="page-title">Coming soon</h1>
       <p class="section-name" id="section-name"></p>
       <div class="divider"></div>
-      <p class="note">For inquiries, contact <a href="mailto:contact@inversuslabs.com">contact@inversuslabs.com</a></p>
+      <p class="note" id="page-note">For inquiries, contact <a href="mailto:contact@inversuslabs.com">contact@inversuslabs.com</a></p>
     </div>
   </main>
 
@@ -164,12 +164,23 @@
 
   <script>
     var buttons = document.querySelectorAll('#nav button');
+    var title = document.getElementById('page-title');
     var label = document.getElementById('section-name');
+    var note = document.getElementById('page-note');
+    var defaultTitle = title.textContent;
+    var defaultNote = note.innerHTML;
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener('click', function(){
         for (var j = 0; j < buttons.length; j++) buttons[j].classList.remove('active');
         this.classList.add('active');
         label.textContent = this.textContent;
+        if (this.textContent === 'Pytheas AI') {
+          title.textContent = 'Schedule a 30 minute demo';
+          note.innerHTML = 'To arrange a demo, email us at <a href="mailto:contact@inversuslabs.com">contact@inversuslabs.com</a>';
+        } else {
+          title.textContent = defaultTitle;
+          note.innerHTML = defaultNote;
+        }
       });
     }
   </script>
